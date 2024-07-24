@@ -13,10 +13,13 @@
   //     const data = await response.json();
   //     message = data.message;
   //   };
+  import { page } from '$app/stores';
   export let form;
+
+  const redirectTo = $page.url.searchParams.get('redirectTo') || '/';
 </script>
 
-<form method="post" action="?/login">
+<form method="post" action="?/login&redirectTo={redirectTo}">
   <p>{form?.message || ''}</p>
   <input
     type="text"
@@ -26,5 +29,5 @@
   />
   <input type="password" name="password" placeholder="Password" />
   <button type="submit">Login</button>
-  <button formaction="?/register">Register</button>
+  <button formaction="?/register&redirectTo={redirectTo}">Register</button>
 </form>
